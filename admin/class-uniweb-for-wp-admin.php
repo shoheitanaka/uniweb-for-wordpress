@@ -4,7 +4,7 @@
  * The admin-specific functionality of the plugin.
  *
  * @link       https://https://ssec.shop/
- * @since      1.0.0
+ * @since      1.0.1
  *
  * @package    Uniweb_For_Wp
  * @subpackage Uniweb_For_Wp/admin
@@ -83,10 +83,13 @@ class Uniweb_For_Wp_Admin {
 			$section, 
 			array( 'label_for' => '')
 		);
-		$uniweb_code = isset($_REQUEST['uniweb-code'])?sanitize_option( trim( $_REQUEST['uniweb-code'] ) ):'';
-		// Should match the settings_fields() value
-		if (isset( $_REQUEST['option_page'] ) && isset( $_REQUEST['_wpnonce'] )&& sanitize_text_field( $_REQUEST[ 'option_page' ] ) == 'uniweb-setting' ) {
-			update_option( 'uniweb-code', $uniweb_code );
+
+		if( isset( $_REQUEST['_wpnonce'] ) && wp_verify_nonce( $_REQUEST['_wpnonce'] ) ){
+			$uniweb_code = isset( $_REQUEST['uniweb-code'] )?trim( $_REQUEST['uniweb-code'] ):'';
+			// Should match the settings_fields() value
+			if (isset( $_REQUEST['option_page'] ) && sanitize_text_field( $_REQUEST[ 'option_page' ] ) == 'uniweb-setting' ) {
+				update_option( 'uniweb-code', sanitize_text_field( $uniweb_code ) );
+			}
 		}
 
 	}
@@ -109,11 +112,6 @@ class Uniweb_For_Wp_Admin {
 
 	// Sanitizes and validates all input and output for Dashboard
 	function wp_uniweb_validate_options( $input ){
-		$uniweb_code = trim( $input['uniweb-code']);
-		// Should match the settings_fields() value
-		if ( isset( $input[ 'option_page' ] ) && $input[ 'option_page' ] == 'uniweb-setting' && isset($input['_wpnonce'])) {
-			update_option( 'uniweb-code', $uniweb_code );
-		}
 	}
 
 	public function uniweb_code_input(){

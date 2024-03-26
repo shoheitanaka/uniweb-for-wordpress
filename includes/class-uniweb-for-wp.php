@@ -8,7 +8,7 @@
  * Also maintains the unique identifier of this plugin as well as the current
  * version of the plugin.
  *
- * @since      1.0.0
+ * @since      1.0.1
  * @package    Uniweb_For_Wp
  * @subpackage Uniweb_For_Wp/includes
  * @author     Shohei Tanaka <shoheit@ssec.shop>
