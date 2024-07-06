@@ -22,13 +22,13 @@ if ( ! defined( 'WPINC' ) ) {
  * Start at version 1.0.0 and use SemVer - https://semver.org
  * Rename this for your plugin and update it as you release new versions.
  */
-define( 'UNIWEB_FOR_WP_VERSION', '1.0.0' );
+define( 'UNIWEB_FOR_WP_VERSION', '1.0.1' );
 
 /**
  * The code that runs during plugin activation.
  * This action is documented in includes/class-uniweb-for-wp-activator.php
  */
-function activate_uniweb_for_wp() {
+function uniweb_for_wp_activate() {
 	require_once plugin_dir_path( __FILE__ ) . 'includes/class-uniweb-for-wp-activator.php';
 	Uniweb_For_Wp_Activator::activate();
 }
@@ -37,13 +37,13 @@ function activate_uniweb_for_wp() {
  * The code that runs during plugin deactivation.
  * This action is documented in includes/class-uniweb-for-wp-deactivator.php
  */
-function deactivate_uniweb_for_wp() {
+function uniweb_for_wp_deactivate() {
 	require_once plugin_dir_path( __FILE__ ) . 'includes/class-uniweb-for-wp-deactivator.php';
 	Uniweb_For_Wp_Deactivator::deactivate();
 }
 
-register_activation_hook( __FILE__, 'activate_uniweb_for_wp' );
-register_deactivation_hook( __FILE__, 'deactivate_uniweb_for_wp' );
+register_activation_hook( __FILE__, 'uniweb_for_wp_activate' );
+register_deactivation_hook( __FILE__, 'uniweb_for_wp_deactivate' );
 
 /**
  * The core plugin class that is used to define internationalization,
@@ -60,10 +60,10 @@ require plugin_dir_path( __FILE__ ) . 'includes/class-uniweb-for-wp.php';
  *
  * @since    1.0.0
  */
-function run_uniweb_for_wp() {
+function uniweb_for_wp_run() {
 
 	$plugin = new Uniweb_For_Wp();
 	$plugin->run();
 
 }
-run_uniweb_for_wp();
+uniweb_for_wp_run();

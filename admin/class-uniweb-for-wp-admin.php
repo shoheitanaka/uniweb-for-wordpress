@@ -106,7 +106,7 @@ class Uniweb_For_Wp_Admin {
 		);
 		echo '</form>';
 		echo '<hr />';
-		$uniweb_apply_url = 'https://studio.ssec.shop/uniweb/?utm_source=wporg&utm_medium=plugins&utm_campaign=wp_admin';
+		$uniweb_apply_url = esc_url('https://studio.ssec.shop/uniweb/?utm_source=wporg&utm_medium=plugins&utm_campaign=wp_admin');
 		echo '<div><a href="'.$uniweb_apply_url.'">'.__( 'Apply UniWeb from here.', 'uniweb-for-wp' ).'</a></div>';
 	}
 
@@ -119,6 +119,6 @@ class Uniweb_For_Wp_Admin {
 		if(get_option( 'uniweb-code' )){
 			$uniweb_code = get_option( 'uniweb-code' );
 		}
-		echo '<input type="text" name="uniweb-code" value="'.$uniweb_code.'" />';
+		echo '<input type="text" name="uniweb-code" value="'.wp_filter_post_kses($uniweb_code).'" />';
 	}
 }

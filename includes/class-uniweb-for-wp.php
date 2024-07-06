@@ -50,13 +50,13 @@ class Uniweb_For_Wp {
 	 * Load the dependencies, define the locale, and set the hooks for the admin area and
 	 * the public-facing side of the site.
 	 *
-	 * @since    1.0.0
+	 * @since    1.0.1
 	 */
 	public function __construct() {
 		if ( defined( 'UNIWEB_FOR_WP_VERSION' ) ) {
 			$this->version = UNIWEB_FOR_WP_VERSION;
 		} else {
-			$this->version = '1.0.0';
+			$this->version = '1.0.1';
 		}
 		$this->plugin_name = 'uniweb-for-wp';
 
@@ -85,28 +85,23 @@ class Uniweb_For_Wp {
 	 */
 	private function load_dependencies() {
 
+		$plugin_path = plugin_dir_path( dirname( __FILE__ ) );
 		/**
 		 * The class responsible for orchestrating the actions and filters of the
 		 * core plugin.
 		 */
-		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-uniweb-for-wp-loader.php';
+		require_once $plugin_path . 'includes/class-uniweb-for-wp-loader.php';
 
 		/**
 		 * The class responsible for defining internationalization functionality
 		 * of the plugin.
 		 */
-		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-uniweb-for-wp-i18n.php';
+		require_once $plugin_path . 'includes/class-uniweb-for-wp-i18n.php';
 
 		/**
 		 * The class responsible for defining all actions that occur in the admin area.
 		 */
-		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/class-uniweb-for-wp-admin.php';
-
-		/**
-		 * The class responsible for defining all actions that occur in the public-facing
-		 * side of the site.
-		 */
-		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'public/class-uniweb-for-wp-public.php';
+		require_once $plugin_path . 'admin/class-uniweb-for-wp-admin.php';
 
 		$this->loader = new Uniweb_For_Wp_Loader();
 
