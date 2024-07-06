@@ -14,8 +14,8 @@ Web accessibility functions can be easily implemented with plugins.
 
 Web accessibility functions can be easily implemented with plugins.
 A wide range of customization is possible without compromising your brand or worldview.
-Rich accessibility features that support standards.
-This plugin integrates with a third party called uniweb that improves the accessibility of your WordPress site.
+Rich Web accessibility features that support standards.
+This plugin integrates with a third party called uniweb that improves the web accessibility of your WordPress site.
 A contract with the Uniweb is required.
 SoftStepsStudio is an agency that handles Uniewb for WordPress sites.
 Please see below for details.
@@ -52,6 +52,11 @@ You cannot use it until you apply and the review is completed.
 
 Not currently available.
 We are considering this, but we have not decided when to start.
+
+= Is there a sample site to show what it will look like? =
+
+Although the site is only available in Japanese, the following is a sample site that is actually being used.
+https://www.businessinsider.jp/
 
 == Screenshots ==
 
