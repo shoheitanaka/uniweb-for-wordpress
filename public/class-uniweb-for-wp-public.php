@@ -57,7 +57,7 @@ class Uniweb_For_Wp_Public {
 	public function uniweb_add_code(){
 		$account_code = get_option( 'uniweb-code' );
 		if($account_code) echo '<!-- Uniweb Setting start -->
-<script src="https://sdk.hellouniweb.com/base/main.js" data-account="'.wp_filter_post_kses($account_code).'"></script>
+<script src="https://sdk.hellouniweb.com/base/main.js" data-account="' . esc_html( $account_code ) . '"></script>
 <!-- Uniweb Setting end -->
 ';
 	}

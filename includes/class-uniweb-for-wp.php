@@ -103,6 +103,12 @@ class Uniweb_For_Wp {
 		 */
 		require_once $plugin_path . 'admin/class-uniweb-for-wp-admin.php';
 
+		/**
+		 * The class responsible for defining all actions that occur in the public-facing
+		 * side of the site.
+		 */
+		require_once $plugin_path . 'public/class-uniweb-for-wp-public.php';
+
 		$this->loader = new Uniweb_For_Wp_Loader();
 
 	}

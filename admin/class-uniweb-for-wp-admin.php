@@ -4,7 +4,7 @@
  * The admin-specific functionality of the plugin.
  *
  * @link       https://https://ssec.shop/
- * @since      1.0.1
+ * @since      1.0.2
  *
  * @package    Uniweb_For_Wp
  * @subpackage Uniweb_For_Wp/admin
@@ -84,8 +84,8 @@ class Uniweb_For_Wp_Admin {
 			array( 'label_for' => '')
 		);
 
-		if( isset( $_REQUEST['_wpnonce'] ) && wp_verify_nonce( $_REQUEST['_wpnonce'] ) ){
-			$uniweb_code = isset( $_REQUEST['uniweb-code'] )?$_REQUEST['uniweb-code']:'';
+		if( isset( $_REQUEST['_wpnonce'] ) && wp_verify_nonce( $_REQUEST['_wpnonce'], 'uniweb-setting' ) ){
+			$uniweb_code = isset( $_REQUEST['uniweb-code'] )?trim($_REQUEST['uniweb-code']):'';
 			// Should match the settings_fields() value
 			if (isset( $_REQUEST['option_page'] ) && sanitize_text_field( $_REQUEST[ 'option_page' ] ) == 'uniweb-setting' ) {
 				update_option( 'uniweb-code', sanitize_text_field( $uniweb_code ) );
@@ -100,8 +100,11 @@ class Uniweb_For_Wp_Admin {
 	 * @return void
 	 */
 	public function uniweb_setting(){
-		echo '<form method="post" action="">';
-		settings_fields( 'uniweb-setting' );
+		echo '<form method="post" action="">
+		<input type="hidden" name="option_page" value="uniweb-setting">
+		<input type="hidden" name="action" value="update">
+		<input type="hidden" name="_wpnonce" value="'. esc_html( wp_create_nonce( 'uniweb-setting' ) ).'">';
+//		settings_fields( 'uniweb-setting' );
 		do_settings_sections( 'uniweb-setting' );
 		submit_button( 
 			__( 'Save', 'uniweb-for-wp' ),
@@ -111,8 +114,8 @@ class Uniweb_For_Wp_Admin {
 		);
 		echo '</form>';
 		echo '<hr />';
-		$uniweb_apply_url = esc_url('https://studio.ssec.shop/uniweb/?utm_source=wporg&utm_medium=plugins&utm_campaign=wp_admin');
-		echo '<div><a href="'.$uniweb_apply_url.'">'.__( 'Apply UniWeb from here.', 'uniweb-for-wp' ).'</a></div>';
+		$uniweb_apply_url = 'https://studio.ssec.shop/uniweb/?utm_source=wporg&utm_medium=plugins&utm_campaign=wp_admin';
+		echo '<div><a href="'.  esc_url($uniweb_apply_url) . '">' . esc_html( 'Apply UniWeb from here.', 'uniweb-for-wp' ) . '</a></div>';
 	}
 
 	// Sanitizes and validates all input and output for Dashboard
@@ -124,6 +127,6 @@ class Uniweb_For_Wp_Admin {
 		if(get_option( 'uniweb-code' )){
 			$uniweb_code = get_option( 'uniweb-code' );
 		}
-		echo '<input type="text" name="uniweb-code" value="'.sanitize_text_field($uniweb_code).'" />';
+		echo '<input type="text" name="uniweb-code" value="' . esc_html( $uniweb_code ) . '" />';
 	}
 }
