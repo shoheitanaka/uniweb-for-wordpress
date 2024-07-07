@@ -85,7 +85,7 @@ class Uniweb_For_Wp_Admin {
 		);
 
 		if( isset( $_REQUEST['_wpnonce'] ) && wp_verify_nonce( $_REQUEST['_wpnonce'] ) ){
-			$uniweb_code = isset( $_REQUEST['uniweb-code'] )?trim( $_REQUEST['uniweb-code'] ):'';
+			$uniweb_code = isset( $_REQUEST['uniweb-code'] )?$_REQUEST['uniweb-code']:'';
 			// Should match the settings_fields() value
 			if (isset( $_REQUEST['option_page'] ) && sanitize_text_field( $_REQUEST[ 'option_page' ] ) == 'uniweb-setting' ) {
 				update_option( 'uniweb-code', sanitize_text_field( $uniweb_code ) );
@@ -94,6 +94,11 @@ class Uniweb_For_Wp_Admin {
 
 	}
 
+	/**
+	 * Display the UniWeb setting page
+	 *
+	 * @return void
+	 */
 	public function uniweb_setting(){
 		echo '<form method="post" action="">';
 		settings_fields( 'uniweb-setting' );
@@ -111,7 +116,7 @@ class Uniweb_For_Wp_Admin {
 	}
 
 	// Sanitizes and validates all input and output for Dashboard
-	function wp_uniweb_validate_options( $input ){
+	function uniweb_validate_options( $input ){
 	}
 
 	public function uniweb_code_input(){
@@ -119,6 +124,6 @@ class Uniweb_For_Wp_Admin {
 		if(get_option( 'uniweb-code' )){
 			$uniweb_code = get_option( 'uniweb-code' );
 		}
-		echo '<input type="text" name="uniweb-code" value="'.wp_filter_post_kses($uniweb_code).'" />';
+		echo '<input type="text" name="uniweb-code" value="'.sanitize_text_field($uniweb_code).'" />';
 	}
 }
